@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Список продуктов{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <h1 style="margin-bottom: 20px; text-align: center;">Наши продукты</h1>
+
+  {% if object_list %}
+    <ul style="list-style: none; padding: 0;">
+      {% for product in object_list %}
+        <li style="
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 16px;
+          margin-bottom: 12px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        ">
+          <h2 style="margin: 0 0 6px 0; color: #0f172a;">{{ product.name }}</h2>
+          <p style="margin: 0 0 8px 0; color: #6b7280;">{{ product.description }}</p>
+          <strong style="color: #0ea5a4;">Ціна: {{ product.price }} грн</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p style="text-align: center; color: #6b7280;">Поки що немає доступних товарів 😔</p>
+  {% endif %}
+</div>
+{% endblock %}
