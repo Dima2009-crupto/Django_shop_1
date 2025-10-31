@@ -35,5 +35,8 @@ def delete_product(request, product_id):
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'ProductManager/product_list.html' 
-    context_object_name = 'object_list' 
+    template_name = 'product_list.html' 
+    context_object_name = 'object_list'
+
+
+    
