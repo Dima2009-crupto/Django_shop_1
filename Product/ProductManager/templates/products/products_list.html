@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Список продуктов</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatechars:120 }}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <strong>{{ product.price }} ₽</strong>
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'product_delete' product.pk %}">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-danger">Удалить</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>Товаров ещё нет.</p>
+    {% endfor %}
+    </div>
+
+
+    <nav>
+        <ul class="pagination">
+            {% if products.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Назад</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link">Страница {{ products.number }} из {{ products.paginator.num_pages }}</span></li>
+            {% if products.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Вперед</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
