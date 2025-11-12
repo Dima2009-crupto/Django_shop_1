@@ -8,17 +8,17 @@
       <ul class="navbar-nav me-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'product_list' %}">Товари</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'product_add' %}">Додати товар</a></li>
-      </ul>
-
-
-      <ul class="navbar-nav">
         {% if user.is_authenticated %}
-          <li class="nav-item"><span class="navbar-text me-2">Привіт, {{ user.username }}</span></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'password_change' %}">Змінити пароль</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Вийти</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout'%}">Вихід</a>
+            </li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'login_view' %}">Увійти</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Реєстрація</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'sign_in'%}">Вхід</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'sign_up'%}">Реєстрація</a>
+            </li>
         {% endif %}
       </ul>
     </div>
